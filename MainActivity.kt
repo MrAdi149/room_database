@@ -2,6 +2,9 @@ package com.example.roomdatabaseentity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.lifecycle.Observer
 import androidx.room.Room
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,4 +23,11 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    fun getData(view: View) {
+        database.contactDao().getContact().observe(this, Observer {
+            Log.d("roomDatabase",it.toString())
+        })
+    }
+
 }
