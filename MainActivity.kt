@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.room.Room
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,10 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database= Room.databaseBuilder(applicationContext,ContactDatabase::class.java,"contactDB").build()
-
+        database= ContactDatabase.getDatabase(this)
         GlobalScope.launch {
-            database.contactDao().insertContact(Contact(0,"Aditya","912289"))
+            database.contactDao().insertContact(Contact(0,"Aditya","912289", Date()))
         }
 
     }
